@@ -6,6 +6,7 @@
 import type { LeafObject } from "../registry";
 import type { LabelObject } from "../types/Group";
 import { clampCodablockColumns, CODABLOCK_PREVIEW_COLUMNS_MIN } from "../registry/codablock";
+import { EC_PERCENT_MIN, EC_PERCENT_MAX } from "../registry/aztec";
 import { upceData6FromFd } from "../registry/hriFormatters";
 import type { Gs1DatabarProps } from "../registry/gs1databar";
 import { isAxisSwapped, objectRotation } from "../registry/rotation";
@@ -17,6 +18,7 @@ import {
   gs1ContentToElementString,
 } from "./gs1";
 import { isRectangular, dmVersionString, type DataMatrixProps } from "../registry/datamatrix";
+import { MAXICODE_WIDTH_MM, MAXICODE_HEIGHT_MM } from "../registry/maxicode";
 import {
   applyBindingToObject,
   getObjectStringContent,
@@ -66,17 +68,16 @@ function gs1BwipText(content: string): string {
   return gs1ContentToElementString(content);
 }
 
-/** ^B0 `d` param (AztecProps.ecLevel) -> bwip bcid + size options. Default and
- *  EC% (1-99) stay on the compact bcid to match Zebra's compact-preferred auto
- *  sizing; 101-104/201-232 force a compact/full symbol of that layer count; 300
- *  is the fixed Rune. Layer counts verified against Labelary. */
-function aztecBwipOptions(ecLevel: number): Record<string, unknown> {
+/** ^B0 `d` param (AztecProps.ecLevel) -> bwip bcid + size options: 5-95 is EC%,
+ *  101-104/201-232 forces that layer count, 300 is the fixed Rune. Out-of-band
+ *  percents (1-4/96-99) fall to auto sizing; flagged by aztecEcLevelOutOfRange. */
+export function aztecBwipOptions(ecLevel: number): Record<string, unknown> {
   // Round so a non-integer never reaches bwip's `layers`; NaN falls to default.
   const ec = Math.round(ecLevel) || 0;
   if (ec === 300) return { bcid: "azteccode", format: "rune" };
   if (ec >= 201 && ec <= 232) return { bcid: "azteccode", format: "full", layers: ec - 200 };
   if (ec >= 101 && ec <= 104) return { bcid: "azteccodecompact", layers: ec - 100 };
-  if (ec >= 1 && ec <= 99) return { bcid: "azteccodecompact", eclevel: ec };
+  if (ec >= EC_PERCENT_MIN && ec <= EC_PERCENT_MAX) return { bcid: "azteccodecompact", eclevel: ec };
   return { bcid: "azteccodecompact" };
 }
 
@@ -749,9 +750,11 @@ function getUprightDisplaySize(
       return { w: size, h: size };
     }
     case "maxicode": {
-      // Fixed physical size; convert bwip's px-per-dot back to stage px.
-      const w = dotsToPx(cw / BWIP_SCALE, scale, dpmm);
-      const h = dotsToPx(ch / BWIP_SCALE, scale, dpmm);
+      // Fixed physical symbol: size tracks dpmm, unlike bwip's dpmm-independent
+      // pixel canvas (which rendered ~half the printed size). The ink-only bwip
+      // bitmap fills this footprint, so drawn ink matches the printed extent.
+      const w = dotsToPx(MAXICODE_WIDTH_MM * dpmm, scale, dpmm);
+      const h = dotsToPx(MAXICODE_HEIGHT_MM * dpmm, scale, dpmm);
       return { w, h };
     }
     case "micropdf417": {

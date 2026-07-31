@@ -1,4 +1,5 @@
 import type { ObjectTypeCore } from "../types/ObjectType";
+import type { PreflightProducerResult } from "../types/preflight";
 import { fieldPosZ, fdFieldFor } from "./zplHelpers";
 import { moduleTooSmallPreflight } from "../lib/barcodeScannability";
 import { type ZplRotation } from "./rotation";
@@ -9,6 +10,22 @@ export const EC_LEVEL_MIN = 0;
 // NumberInput can't express the discontinuous AztecProps domain; use the
 // highest valid value (Rune = 300) as the upper bound.
 export const EC_LEVEL_MAX = 300;
+// Encoder-accepted error-correction percent band; values in the percent range
+// but outside this (1-4, 96-99) reject at encode.
+export const EC_PERCENT_MIN = 5;
+export const EC_PERCENT_MAX = 95;
+
+/** Flags an ecLevel that reads as a percent (1-99) but sits outside the
+ *  encoder's 5-95 band. The special layer/rune domains (0, 101-104, 201-232,
+ *  300) are valid and never flagged. */
+function ecLevelFindings(ecLevel: number): PreflightProducerResult[] {
+  const ec = Math.round(ecLevel);
+  const inPercentBand = ec >= 1 && ec <= 99;
+  if (inPercentBand && (ec < EC_PERCENT_MIN || ec > EC_PERCENT_MAX)) {
+    return [{ kind: "aztecEcLevelOutOfRange", detail: `${ec} (valid ${EC_PERCENT_MIN}-${EC_PERCENT_MAX})` }];
+  }
+  return [];
+}
 
 export interface AztecProps {
   content: string;
@@ -39,7 +56,10 @@ export const aztec: ObjectTypeCore<AztecProps> = {
 
   uniformScaleProp: { name: 'magnification', min: MAGNIFICATION_MIN, max: MAGNIFICATION_MAX },
 
-  preflight: moduleTooSmallPreflight<AztecProps>('magnification'),
+  preflight: (obj, ctx) => [
+    ...moduleTooSmallPreflight<AztecProps>('magnification')(obj, ctx),
+    ...ecLevelFindings(obj.props.ecLevel),
+  ],
 
   toZPL: (obj, ctx) => {
     const p = obj.props;
