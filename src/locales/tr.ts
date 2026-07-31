@@ -458,6 +458,8 @@ const tr = {
     printerSupportLimited: 'Sınırlı destek',
     qrRotatedStatic: 'Döndürülmüş QR Kodu statik değer basar',
     qrRotatedModel2: 'Döndürülmüş QR Kodu Model 2 olarak basar',
+    maxicodeModeMissingScm: 'Taşıyıcı mesajı eksik',
+    aztecEcLevelOutOfRange: 'Hata düzeltme önizlenemiyor',
     unknownType: 'Bilinmeyen nesne türü',
   },
 

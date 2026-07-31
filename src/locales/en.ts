@@ -458,6 +458,8 @@ const en = {
     printerSupportLimited: 'Limited support',
     qrRotatedStatic: 'Rotated QR prints a static value',
     qrRotatedModel2: 'Rotated QR prints as Model 2',
+    maxicodeModeMissingScm: 'Missing carrier message',
+    aztecEcLevelOutOfRange: 'Error correction not previewable',
     unknownType: 'Unknown object type',
   },
 

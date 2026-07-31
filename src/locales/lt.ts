@@ -458,6 +458,8 @@ const lt = {
     printerSupportLimited: 'Ribotas palaikymas',
     qrRotatedStatic: 'Pasuktas QR kodas spausdina statinę reikšmę',
     qrRotatedModel2: 'Pasuktas QR kodas spausdina kaip 2 modelis',
+    maxicodeModeMissingScm: 'Trūksta vežėjo pranešimo',
+    aztecEcLevelOutOfRange: 'Klaidų taisymas be peržiūros',
     unknownType: 'Nežinomas objekto tipas',
   },
 

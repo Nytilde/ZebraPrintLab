@@ -71,6 +71,37 @@ describe("barcodeEncodeFindings", () => {
       { objectId: "a", kind: "renderFailed", severity: "error", detail: "bad" },
     ]);
   });
+
+  const maxi = (mode: 2 | 3 | 4, content: string): LeafObject =>
+    ({ id: "m", type: "maxicode", x: 0, y: 0, rotation: 0, props: { mode, content } } as LabelObject as LeafObject);
+
+  it("does not emit renderFailed for a mode 2/3 MaxiCode missing its carrier message (the producer owns it)", () => {
+    // Regression: this used to double-report (renderFailed here + a red canvas
+    // box); the missing-SCM finding from computePreflight is the single source.
+    expect(barcodeEncodeFindings([maxi(2, "1234567890")], 1, 8, noEnv, () => "bwipp.maxicodeExpectedCountryCode")).toEqual([]);
+  });
+
+  it("keeps renderFailed for a BOUND MaxiCode whose value has no separator (the producer never sees it)", () => {
+    // The core producer skips marker content, so the resolved-value failure
+    // must surface here; skipping both sides would hide the broken symbol.
+    const env: EncodeEnv = {
+      variables: [{ id: "v", name: "scm", fnNumber: 1, defaultValue: "1234567890" }],
+      active: null,
+    };
+    const out = barcodeEncodeFindings([maxi(2, "«scm»")], 1, 8, env, () => "bwipp.maxicodeExpectedCountryCode");
+    expect(out).toEqual([
+      { objectId: "m", kind: "renderFailed", severity: "error", detail: "bwipp.maxicodeExpectedCountryCode" },
+    ]);
+  });
+
+  it("still surfaces other MaxiCode encode errors as renderFailed", () => {
+    // A separator is present (not the clearly-missing case): a genuine encode
+    // failure stays a renderFailed, unchanged.
+    const out = barcodeEncodeFindings([maxi(2, "12\x1d34")], 1, 8, noEnv, () => "some other error");
+    expect(out).toEqual([
+      { objectId: "m", kind: "renderFailed", severity: "error", detail: "some other error" },
+    ]);
+  });
 });
 
 describe("resolveForEncode", () => {

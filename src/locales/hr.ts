@@ -458,6 +458,8 @@ const hr = {
     printerSupportLimited: 'Ograničena podrška',
     qrRotatedStatic: 'Rotirani QR kod ispisuje statičnu vrijednost',
     qrRotatedModel2: 'Rotirani QR kod ispisuje kao Model 2',
+    maxicodeModeMissingScm: 'Nedostaje poruka prijevoznika',
+    aztecEcLevelOutOfRange: 'Ispravak pogrešaka bez pregleda',
     unknownType: 'Nepoznata vrsta objekta',
   },
 

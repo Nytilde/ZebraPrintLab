@@ -458,6 +458,8 @@ const ar = {
     printerSupportLimited: 'دعم محدود',
     qrRotatedStatic: 'رمز QR الدوّار يطبع قيمة ثابتة',
     qrRotatedModel2: 'رمز QR الدوّار يطبع كطراز 2',
+    maxicodeModeMissingScm: 'رسالة الناقل مفقودة',
+    aztecEcLevelOutOfRange: 'تصحيح الأخطاء غير قابل للمعاينة',
     unknownType: 'نوع كائن غير معروف',
   },
 

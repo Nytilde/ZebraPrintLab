@@ -260,11 +260,13 @@ export function computePreflight(
     // invisible/ambiguous chars smuggled in via scan or foreign-tool import, so
     // check here once instead of duplicating the producer across every type.
     if (content !== undefined) {
-      // GS1 fields carry a structural GS separator (0x1D) between chained AIs;
-      // it's intentional, not smuggled, so drop it before the scan.
-      const scanned = (leaf.props as { gs1?: boolean }).gs1
-        ? content.split(GS1_GS).join("")
-        : content;
+      // GS1 fields carry a structural GS separator (0x1D) between chained AIs,
+      // and a MaxiCode carrier message (modes 2/3 only; 5 is plain EEC data)
+      // is GS-delimited by spec; intentional, not smuggled, so drop GS first.
+      const gsStructural =
+        (leaf.props as { gs1?: boolean }).gs1 ||
+        (leaf.type === "maxicode" && [2, 3].includes((leaf.props as { mode?: number }).mode ?? 0));
+      const scanned = gsStructural ? content.split(GS1_GS).join("") : content;
       const detail = suspiciousCharDetail(scanned);
       if (detail) {
         // Hidden chars win over emptiness: NBSP/BOM-only content trims to empty

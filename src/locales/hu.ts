@@ -458,6 +458,8 @@ const hu = {
     printerSupportLimited: 'Korlátozott támogatás',
     qrRotatedStatic: 'Forgatott QR-kód statikus értéket nyomtat',
     qrRotatedModel2: 'Forgatott QR-kód 2. modellként nyomtat',
+    maxicodeModeMissingScm: 'Hiányzó fuvarozói üzenet',
+    aztecEcLevelOutOfRange: 'Hibajavítás előnézet nélkül',
     unknownType: 'Ismeretlen objektumtípus',
   },
 

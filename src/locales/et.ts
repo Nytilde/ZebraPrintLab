@@ -458,6 +458,8 @@ const et = {
     printerSupportLimited: 'Piiratud tugi',
     qrRotatedStatic: 'Pööratud QR-kood trükib staatilise väärtuse',
     qrRotatedModel2: 'Pööratud QR-kood trükib mudelina 2',
+    maxicodeModeMissingScm: 'Vedaja sõnum puudub',
+    aztecEcLevelOutOfRange: 'Veaparandus ilma eelvaateta',
     unknownType: 'Tundmatu objekti tüüp',
   },
 

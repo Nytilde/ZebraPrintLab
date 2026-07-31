@@ -458,6 +458,8 @@ const sv = {
     printerSupportLimited: 'Begränsat stöd',
     qrRotatedStatic: 'Roterad QR-kod skriver ut statiskt värde',
     qrRotatedModel2: 'Roterad QR-kod skriver ut som Modell 2',
+    maxicodeModeMissingScm: 'Transportörmeddelande saknas',
+    aztecEcLevelOutOfRange: 'Felkorrigering kan inte förhandsgranskas',
     unknownType: 'Okänd objekttyp',
   },
 

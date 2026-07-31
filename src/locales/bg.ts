@@ -458,6 +458,8 @@ const bg = {
     printerSupportLimited: 'Ограничена поддръжка',
     qrRotatedStatic: 'Завъртян QR код отпечатва статична стойност',
     qrRotatedModel2: 'Завъртян QR код отпечатва като Модел 2',
+    maxicodeModeMissingScm: 'Липсва съобщение на носителя',
+    aztecEcLevelOutOfRange: 'Корекцията на грешки не се визуализира',
     unknownType: 'Неизвестен тип обект',
   },
 

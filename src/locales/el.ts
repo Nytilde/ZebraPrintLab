@@ -458,6 +458,8 @@ const el = {
     printerSupportLimited: 'Περιορισμένη υποστήριξη',
     qrRotatedStatic: 'Περιστραμμένος κωδικός QR εκτυπώνει στατική τιμή',
     qrRotatedModel2: 'Περιστραμμένος κωδικός QR εκτυπώνει ως Μοντέλο 2',
+    maxicodeModeMissingScm: 'Λείπει το μήνυμα μεταφορέα',
+    aztecEcLevelOutOfRange: 'Διόρθωση σφαλμάτων χωρίς προεπισκόπηση',
     unknownType: 'Άγνωστος τύπος αντικειμένου',
   },
 

@@ -458,6 +458,8 @@ const ja = {
     printerSupportLimited: '一部非対応',
     qrRotatedStatic: '回転したQRコードは固定値を印刷',
     qrRotatedModel2: '回転したQRコードはモデル2として印刷',
+    maxicodeModeMissingScm: '運送業者メッセージがありません',
+    aztecEcLevelOutOfRange: '誤り訂正はプレビュー非対応',
     unknownType: '不明なオブジェクトタイプ',
   },
 

@@ -458,6 +458,8 @@ const cs = {
     printerSupportLimited: 'Omezená podpora',
     qrRotatedStatic: 'Otočený QR kód tiskne statickou hodnotu',
     qrRotatedModel2: 'Otočený QR kód tiskne jako Model 2',
+    maxicodeModeMissingScm: 'Chybí zpráva přepravce',
+    aztecEcLevelOutOfRange: 'Oprava chyb bez náhledu',
     unknownType: 'Neznámý typ objektu',
   },
 

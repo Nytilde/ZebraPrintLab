@@ -458,6 +458,8 @@ const zhHant = {
     printerSupportLimited: '支援有限',
     qrRotatedStatic: '旋轉的二維碼列印靜態值',
     qrRotatedModel2: '旋轉的二維碼以型號2列印',
+    maxicodeModeMissingScm: '缺少承運人訊息',
+    aztecEcLevelOutOfRange: '糾錯不支援預覽',
     unknownType: '未知的物件類型',
   },
 

@@ -458,6 +458,8 @@ const he = {
     printerSupportLimited: 'תמיכה מוגבלת',
     qrRotatedStatic: 'קוד QR מסובב מדפיס ערך סטטי',
     qrRotatedModel2: 'קוד QR מסובב מדפיס כדגם 2',
+    maxicodeModeMissingScm: 'חסרה הודעת מוביל',
+    aztecEcLevelOutOfRange: 'תיקון שגיאות ללא תצוגה מקדימה',
     unknownType: 'סוג אובייקט לא ידוע',
   },
 

@@ -458,6 +458,8 @@ const fi = {
     printerSupportLimited: 'Rajoitettu tuki',
     qrRotatedStatic: 'Käännetty QR-koodi tulostaa staattisen arvon',
     qrRotatedModel2: 'Käännetty QR-koodi tulostaa mallina 2',
+    maxicodeModeMissingScm: 'Rahdinkuljettajan viesti puuttuu',
+    aztecEcLevelOutOfRange: 'Virheenkorjaus ilman esikatselua',
     unknownType: 'Tuntematon objektityyppi',
   },
 

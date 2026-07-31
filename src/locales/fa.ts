@@ -458,6 +458,8 @@ const fa = {
     printerSupportLimited: 'پشتیبانی محدود',
     qrRotatedStatic: 'کد QR چرخانده‌شده مقدار ثابت چاپ می‌کند',
     qrRotatedModel2: 'کد QR چرخانده‌شده به‌صورت مدل ۲ چاپ می‌کند',
+    maxicodeModeMissingScm: 'پیام حامل موجود نیست',
+    aztecEcLevelOutOfRange: 'تصحیح خطا بدون پیش‌نمایش',
     unknownType: 'نوع شیء ناشناخته',
   },
 

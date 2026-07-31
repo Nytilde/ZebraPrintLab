@@ -458,6 +458,8 @@ const zhHans = {
     printerSupportLimited: '支持有限',
     qrRotatedStatic: '旋转的二维码打印静态值',
     qrRotatedModel2: '旋转的二维码以型号2打印',
+    maxicodeModeMissingScm: '缺少承运人消息',
+    aztecEcLevelOutOfRange: '纠错不支持预览',
     unknownType: '未知的对象类型',
   },
 

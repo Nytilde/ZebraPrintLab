@@ -458,6 +458,8 @@ const ro = {
     printerSupportLimited: 'Suport limitat',
     qrRotatedStatic: 'Codul QR rotit imprimă o valoare statică',
     qrRotatedModel2: 'Codul QR rotit imprimă ca Modelul 2',
+    maxicodeModeMissingScm: 'Lipsește mesajul transportatorului',
+    aztecEcLevelOutOfRange: 'Corectarea erorilor nu poate fi previzualizată',
     unknownType: 'Tip de obiect necunoscut',
   },
 

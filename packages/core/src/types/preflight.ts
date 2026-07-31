@@ -21,6 +21,8 @@ export type PreflightKind =
   | 'printerSupportLimited'
   | 'qrRotatedStatic'
   | 'qrRotatedModel2'
+  | 'maxicodeModeMissingScm'
+  | 'aztecEcLevelOutOfRange'
   | 'unknownType';
 
 export interface PreflightFinding {
@@ -66,6 +68,12 @@ export const PREFLIGHT_SEVERITY: Record<PreflightKind, PreflightSeverity> = {
   // The graphic encoder only produces Model 2 symbols, so a rotated Model 1
   // QR prints as Model 2 (legacy scanners may reject it).
   qrRotatedModel2: 'warning',
+  // Modes 2/3 need a structured carrier message (GS-separated postcode,
+  // country, service); without it the symbol cannot encode.
+  maxicodeModeMissingScm: 'error',
+  // Percent band outside the preview encoder's 5-95 range: the printer accepts
+  // 1-99 (spec p64) and the value round-trips, only the canvas cannot show it.
+  aztecEcLevelOutOfRange: 'warning',
   // A leaf whose type isn't in the registry: it has no emitter, so it prints
   // nothing. Only reachable via an imported/foreign design file.
   unknownType: 'error',

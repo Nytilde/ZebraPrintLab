@@ -458,6 +458,8 @@ const sl = {
     printerSupportLimited: 'Omejena podpora',
     qrRotatedStatic: 'Zasukana QR koda natisne statično vrednost',
     qrRotatedModel2: 'Zasukana QR koda natisne kot Model 2',
+    maxicodeModeMissingScm: 'Manjka sporočilo prevoznika',
+    aztecEcLevelOutOfRange: 'Popravljanje napak brez predogleda',
     unknownType: 'Neznana vrsta predmeta',
   },
 

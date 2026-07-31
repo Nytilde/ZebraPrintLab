@@ -458,6 +458,8 @@ const ko = {
     printerSupportLimited: '지원 제한',
     qrRotatedStatic: '회전된 QR 코드는 고정값을 인쇄',
     qrRotatedModel2: '회전된 QR 코드는 모델 2로 인쇄',
+    maxicodeModeMissingScm: '운송업체 메시지 누락',
+    aztecEcLevelOutOfRange: '오류 정정 미리보기 불가',
     unknownType: '알 수 없는 개체 유형',
   },
 

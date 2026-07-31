@@ -1,4 +1,6 @@
 import { objectResolvesCtrl, type LeafObject } from "@zplab/core/registry";
+import { maxicodeMissingScm, type MaxicodeProps } from "@zplab/core/registry/maxicode";
+import { hasTemplateMarkers } from "@zplab/core/lib/fnTemplate";
 import { isBarcode } from "@zplab/core/lib/objectBounds";
 import { PREFLIGHT_SEVERITY, type PreflightFinding } from "@zplab/core/lib/preflight";
 import type { Variable } from "@zplab/core/types/Variable";
@@ -78,6 +80,16 @@ export function barcodeEncodeFindings(
       if ((getObjectStringContent(leaf) ?? "").trim() !== "") {
         findings.push({ objectId: leaf.id, kind: "emptyContent", severity: PREFLIGHT_SEVERITY.emptyContent });
       }
+      continue;
+    }
+    // A literal mode 2/3 MaxiCode without a carrier message is owned by
+    // maxicodeModeMissingScm (computePreflight); skip renderFailed to avoid a
+    // double report. Marker content isn't skipped: the producer guards it out.
+    if (
+      resolved.type === "maxicode" &&
+      !hasTemplateMarkers(getObjectStringContent(leaf) ?? "") &&
+      maxicodeMissingScm(resolved.props as MaxicodeProps)
+    ) {
       continue;
     }
     const error = encodeError(leaf, resolved);

@@ -24,6 +24,7 @@ import { getObjectStringContent } from "@zplab/core/lib/variableBinding";
 import { hasTemplateMarkers } from "@zplab/core/lib/fnTemplate";
 import { hasControlMarkers } from "@zplab/core/types/controlKey";
 import { objectRotation } from "@zplab/core/registry/rotation";
+import { maxicodeMissingScm, type MaxicodeProps } from "@zplab/core/registry/maxicode";
 import { rotatedGroupTransform } from "./rotatedGroupTransform";
 import { buildEanUpcDigitOverlay } from "./eanUpcDigitNodes";
 import { buildCode1dStartStopGlyphs } from "./code1dHriOverlay";
@@ -509,7 +510,11 @@ export function BarcodeObject({
     );
   }
 
-  // Fallback placeholder (error or not yet rendered)
+  // Fallback placeholder (error or not yet rendered); mode 2/3 MaxiCode
+  // missing its carrier message already reported via preflight, so suppress
+  // the red alarm box here and show the neutral placeholder instead.
+  const scmMissing = obj.type === "maxicode" && maxicodeMissingScm(obj.props as MaxicodeProps);
+  const fallbackError = scmMissing ? null : errorMsg;
   const fbW = dotsToPx(200, scale, dpmm);
   const fbH = dotsToPx(80, scale, dpmm);
   return (
@@ -537,9 +542,9 @@ export function BarcodeObject({
         height={fbH - 12}
         wrap="word"
         ellipsis
-        text={errorMsg ? `⚠ ${errorMsg}` : obj.type}
+        text={fallbackError ? `⚠ ${fallbackError}` : obj.type}
         fontSize={Math.max(dotsToPx(10, scale, dpmm), 8)}
-        fill={errorMsg ? "#b91c1c" : "#374151"}
+        fill={fallbackError ? "#b91c1c" : "#374151"}
       />
     </Group>
   );

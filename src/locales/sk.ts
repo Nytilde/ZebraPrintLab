@@ -458,6 +458,8 @@ const sk = {
     printerSupportLimited: 'Obmedzená podpora',
     qrRotatedStatic: 'Otočený QR kód tlačí statickú hodnotu',
     qrRotatedModel2: 'Otočený QR kód tlačí ako Model 2',
+    maxicodeModeMissingScm: 'Chýba správa prepravcu',
+    aztecEcLevelOutOfRange: 'Oprava chýb bez náhľadu',
     unknownType: 'Neznámy typ objektu',
   },
 

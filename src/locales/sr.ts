@@ -458,6 +458,8 @@ const sr = {
     printerSupportLimited: 'Ограничена подршка',
     qrRotatedStatic: 'Ротирани QR код штампа статичну вредност',
     qrRotatedModel2: 'Ротирани QR код штампа као Модел 2',
+    maxicodeModeMissingScm: 'Недостаје порука превозника',
+    aztecEcLevelOutOfRange: 'Исправка грешака недоступна у прегледу',
     unknownType: 'Непозната врста објекта',
   },
 

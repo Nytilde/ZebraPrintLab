@@ -458,6 +458,8 @@ const da = {
     printerSupportLimited: 'Begrænset support',
     qrRotatedStatic: 'Roteret QR-kode udskriver statisk værdi',
     qrRotatedModel2: 'Roteret QR-kode udskriver som Model 2',
+    maxicodeModeMissingScm: 'Manglende transportmeddelelse',
+    aztecEcLevelOutOfRange: 'Fejlkorrektion uden forhåndsvisning',
     unknownType: 'Ukendt objekttype',
   },
 

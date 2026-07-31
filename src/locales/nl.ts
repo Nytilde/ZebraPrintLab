@@ -458,6 +458,8 @@ const nl = {
     printerSupportLimited: 'Beperkte ondersteuning',
     qrRotatedStatic: 'Gedraaide QR-code drukt statische waarde',
     qrRotatedModel2: 'Gedraaide QR-code drukt als model 2',
+    maxicodeModeMissingScm: 'Vervoerdersbericht ontbreekt',
+    aztecEcLevelOutOfRange: 'Foutcorrectie niet in voorbeeld beschikbaar',
     unknownType: 'Onbekend objecttype',
   },
 

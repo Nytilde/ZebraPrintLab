@@ -377,6 +377,28 @@ describe("computePreflight (suspicious-chars producer)", () => {
     const findings = computePreflight([dm("a", "10ABC" + GS + "21XYZ")], ctx, "mm");
     expect(findings.some((f) => f.kind === "suspiciousChars")).toBe(true);
   });
+
+  // The mode 2/3 carrier message is GS-delimited by spec; requiring the
+  // separator and warning about it at the same time would be contradictory.
+  const maxi = (mode: number, content: string): LeafObject =>
+    ({ id: "m", type: "maxicode", x: 0, y: 0, rotation: 0, props: { mode, content } }) as LabelObject as LeafObject;
+
+  it("does not flag the GS separator in a MaxiCode carrier message", () => {
+    const findings = computePreflight([maxi(2, "12345" + GS + "840" + GS + "001")], ctx, "mm");
+    expect(findings.some((f) => f.kind === "suspiciousChars")).toBe(false);
+  });
+
+  it("still flags GS in a mode 4 MaxiCode (plain data, no carrier message)", () => {
+    const findings = computePreflight([maxi(4, "AB" + GS + "CD")], ctx, "mm");
+    expect(findings.some((f) => f.kind === "suspiciousChars")).toBe(true);
+  });
+
+  it("still flags GS in a mode 5 MaxiCode (EEC data has no carrier message)", () => {
+    // bwip encodes mode 5 with GS successfully, so without this flag a hidden
+    // GS would pass both suspiciousChars and renderFailed silently.
+    const findings = computePreflight([maxi(5, "AB" + GS + "CD")], ctx, "mm");
+    expect(findings.some((f) => f.kind === "suspiciousChars")).toBe(true);
+  });
 });
 
 describe("markerValueFindings (typed-content marker values)", () => {

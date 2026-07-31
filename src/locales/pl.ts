@@ -458,6 +458,8 @@ const pl = {
     printerSupportLimited: 'Ograniczone wsparcie',
     qrRotatedStatic: 'Obrócony kod QR drukuje statyczną wartość',
     qrRotatedModel2: 'Obrócony kod QR drukuje jako Model 2',
+    maxicodeModeMissingScm: 'Brak komunikatu przewoźnika',
+    aztecEcLevelOutOfRange: 'Korekcja błędów niedostępna w podglądzie',
     unknownType: 'Nieznany typ obiektu',
   },
 

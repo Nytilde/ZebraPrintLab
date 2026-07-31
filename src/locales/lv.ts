@@ -458,6 +458,8 @@ const lv = {
     printerSupportLimited: 'Ierobežots atbalsts',
     qrRotatedStatic: 'Pagriezts QR kods drukā statisku vērtību',
     qrRotatedModel2: 'Pagriezts QR kods drukā kā 2. modeli',
+    maxicodeModeMissingScm: 'Trūkst pārvadātāja ziņojuma',
+    aztecEcLevelOutOfRange: 'Kļūdu labošana bez priekšskata',
     unknownType: 'Nezināms objekta tips',
   },
 

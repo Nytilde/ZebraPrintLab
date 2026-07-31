@@ -458,6 +458,8 @@ const it = {
     printerSupportLimited: 'Supporto limitato',
     qrRotatedStatic: 'Codice QR ruotato stampa un valore statico',
     qrRotatedModel2: 'Codice QR ruotato stampa come Modello 2',
+    maxicodeModeMissingScm: 'Messaggio corriere mancante',
+    aztecEcLevelOutOfRange: 'Correzione errori non visualizzabile in anteprima',
     unknownType: 'Tipo di oggetto sconosciuto',
   },
 

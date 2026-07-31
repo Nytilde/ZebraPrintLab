@@ -458,6 +458,8 @@ const no = {
     printerSupportLimited: 'Begrenset støtte',
     qrRotatedStatic: 'Rotert QR-kode skriver ut statisk verdi',
     qrRotatedModel2: 'Rotert QR-kode skriver ut som Modell 2',
+    maxicodeModeMissingScm: 'Mangler transportørmelding',
+    aztecEcLevelOutOfRange: 'Feilkorrigering kan ikke forhåndsvises',
     unknownType: 'Ukjent objekttype',
   },
 
